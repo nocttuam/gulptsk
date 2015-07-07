@@ -1,42 +1,34 @@
-var gulp         = require( 'gulp' );
-var autoprefixer = require( 'gulp-autoprefixer' );
-var concat       = require( 'gulp-concat' );
-var minifycss    = require( 'gulp-minify-css' );
-var csscomb      = require( 'gulp-csscomb' ); // Settings in file .csscomb.js
-var notify       = require( 'gulp-notify' );
-var plumber      = require( 'gulp-plumber' );
-var size         = require( 'gulp-size' );
-var sourcemaps   = require( 'gulp-sourcemaps' );
-
+var gulp         = require( 'gulp' ),
+	autoprefixer = require( 'gulp-autoprefixer' ),
+	concat       = require( 'gulp-concat' ),
+	minifycss    = require( 'gulp-minify-css' ),
+	csscomb      = require( 'gulp-csscomb' ), // Settings in file .csscomb.json
+	notify       = require( 'gulp-notify' ),
+	plumber      = require( 'gulp-plumber' ),
+	sourcemaps   = require( 'gulp-sourcemaps' ),
 // Load config file
-var config       = require( '../gulp-tasks/config' );
-
-var onError = function(err) {
-	notify.onError( config.styles.notify.error )( err );
-	this.emit('end');
-};
+	config = require( '../gulp-tasks/config' ).styles,
+	size   = require( '../gulp-tasks/config' ).size;
 
 
 gulp.task('styles', function() {
-	var s = size( );
-	var sg = size( { gzip: true } );
-	return gulp.src( config.styles.src )
+	return gulp.src( config.src )
 	.pipe( plumber( {
-		errorHandler: onError
+		errorHandler: config.notifyOnError
 		} ) )
-	.pipe( s )
-	.pipe( sg )
+	.pipe( size.s )
+	.pipe( size.sg )
 	.pipe( sourcemaps.init( ) )
 	.pipe( autoprefixer( config.autoprefixer ) )
-	.pipe( concat( config.styles.name ) )
+	.pipe( concat( config.name ) )
 	.pipe( csscomb( ) )
 	.pipe( minifycss( config.minifycss ) )
-	.pipe( sourcemaps.write( config.styles.srcMapDest ) )
-	.pipe( gulp.dest( config.styles.dest ) )
+	.pipe( sourcemaps.write( config.srcMapDest ) )
+	.pipe( gulp.dest( config.dest ) )
 	.pipe( notify( {
-		title: config.styles.notify.sucess.title,
+		title: config.notifyOnSucess.title,
 		message: function( ) {
-			return config.styles.notify.sucess.message + ' ' + config.general.totalSizeMessage + ' ' + s.prettySize + ' ' + config.general.gzipMessage + ' ' + sg.prettySize;
+			return config.notifyOnSucess.message + ' ' + size.totalSizeMessage + ' ' + size.s.prettySize + ' ' + size.gzipMessage + ' ' + size.sg.prettySize;
 		},
 		onLast: true
 	} ) );

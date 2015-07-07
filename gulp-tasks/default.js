@@ -1,24 +1,13 @@
 // Load required modules
-var gulp        = require( 'gulp' );
-var notify      = require( 'gulp-notify' );
-var runSequence = require( 'run-sequence' );
+var gulp        = require( 'gulp' ),
+	runSequence = require( 'run-sequence' ),
+	config      = require( '../gulp-tasks/config' ).default;
 
 gulp.task( 'default', function( notification ) {
 	runSequence(
 		'stylus',
-		[ 'scripts', 'styles', 'optimages' ],
+		[ 'scripts', 'styles', 'images' ],
 		'sync',
-		notification
+		config.notification
 	);
 } );
-
-
-var notification = function( ){
-	notify( {
-		title: 'Default Task',
-		message: function( ) {
-			return 'Default Finished';
-		},
-		onLast: true
-	} )
-};

@@ -1,35 +1,29 @@
 // Load required modules
-var gulp   = require( 'gulp' );
-var stylus = require( 'gulp-stylus' );
-
+var gulp    = require( 'gulp' ),
+	stylus  = require( 'gulp-stylus' ),
+	notify  = require( 'gulp-notify' ),
+	plumber = require( 'gulp-plumber' ),
 // Load config file
-var config = require( '../gulp-tasks/config' );
-
-
-var onError = function(err) {
-	notify.onError( config.stylus.notify.error )( err );
-	this.emit('end');
-};
-
+	config = require( '../gulp-tasks/config' ).stylus,
+	size   = require( '../gulp-tasks/config' ).size;
 
 gulp.task('stylus', function () {
-	var s = size( );
-	var sg = size( { gzip: true } );
-	return gulp.src( config.stylus.src )
+	return gulp.src( config.src )
 	.pipe( plumber( {
-		errorHandler: onError
+		errorHandler: config.notifyOnError
 	} ) )
-	.pipe( s )
-	.pipe( sg )
+	.pipe( size.s )
+	.pipe( size.sg )
 	.pipe( stylus( {
-		// linenos: true
+		// linenos: true // Set linenos
+		'include css': true // Include css
 	} ) )
-	.pipe(gulp.dest( config.stylus.dest ) )
+	.pipe(gulp.dest( config.dest ) )
 	.pipe( notify( {
-		title: config.stylus.notify.sucess.title,
+		title: config.notifyOnSucess.title,
 		message: function( ) {
-			return config.stylus.notify.sucess.message + ' ' + config.general.totalSizeMessage + ' ' + s.prettySize + ' ' + config.general.gzipMessage + ' ' + sg.prettySize;
+			return config.notifyOnSucess.message + ' ' + size.totalSizeMessage + ' ' + size.s.prettySize + ' ' + size.gzipMessage + ' ' + size.sg.prettySize;
 		},
 		onLast: true
 	} ) );
-});
+} );
