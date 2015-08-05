@@ -9,7 +9,7 @@ var gulp       = require( 'gulp' ),
 	uglify     = require( 'gulp-uglify' ),
 // Load config file
 	config = require( '../gulp-tasks/config' ).scripts,
-	size   = require( '../gulp-tasks/config' ).size;
+	size   = config.size;
 
 gulp.task( 'scripts', function() {
 	return gulp.src( config.src )

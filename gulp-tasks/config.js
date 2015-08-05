@@ -39,6 +39,12 @@ module.exports = {
 			} );
 		}
 	},
+	delete: {
+		path: {
+			severFiles: '',
+			buildFiles: ''
+		}
+	},
 	ftp: {
 		src: app + '/**/*',
 		dest: '',
@@ -73,6 +79,12 @@ module.exports = {
 		notifyOnSucess: {
 			title: 'Images',
 			message: 'Images Task Success!'
+		},
+		size: {
+			totalSizeMessage: 'Total files:',
+			gzipMessage: 'Gzip files:',
+			s: size( ), // Required to display size files
+			sg: size( { gzip: true } ) // Required to display gizped size files
 		}
 	},
 	rsync: {
@@ -95,13 +107,13 @@ module.exports = {
 		notifyOnSucess: {
 			title: 'Local Sync',
 			message: 'Sync Sucess!'
+		},
+		size: {
+			totalSizeMessage: 'Total files:',
+			gzipMessage: 'Gzip files:',
+			s: size( ), // Required to display size files
+			sg: size( { gzip: true } ) // Required to display gizped size files
 		}
-	},
-	size: {
-		totalSizeMessage: 'Total files:',
-		gzipMessage: 'Gzip files:',
-		s: size( ), // Required to display size files
-		sg: size( { gzip: true } ) // Required to display gizped size files
 	},
 	scripts: {
 		name: 'main.js',
@@ -122,6 +134,12 @@ module.exports = {
 		notifyOnSucess: {
 			title: 'Scripts',
 			message: 'Script Task Sucess!'
+		},
+		size: {
+			totalSizeMessage: 'Total files:',
+			gzipMessage: 'Gzip files:',
+			s: size( ), // Required to display size files
+			sg: size( { gzip: true } ) // Required to display gizped size files
 		}
 	},
 	styles: {
@@ -155,6 +173,12 @@ module.exports = {
 		notifyOnSucess: {
 			title: 'Styles',
 			message: 'Styles Sucess!'
+		},
+		size: {
+			totalSizeMessage: 'Total files:',
+			gzipMessage: 'Gzip files:',
+			s: size( ), // Required to display size files
+			sg: size( { gzip: true } ) // Required to display gizped size files
 		}
 	},
 	stylus: {
@@ -174,6 +198,12 @@ module.exports = {
 		notifyOnSucess: {
 			title: 'Stylus',
 			message: 'Styluss Sucess!'
+		},
+		size: {
+			totalSizeMessage: 'Total files:',
+			gzipMessage: 'Gzip files:',
+			s: size( ), // Required to display size files
+			sg: size( { gzip: true } ) // Required to display gizped size files
 		}
 	}
 };

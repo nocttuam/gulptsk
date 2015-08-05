@@ -8,7 +8,7 @@ var gulp         = require( 'gulp' ),
 	sourcemaps   = require( 'gulp-sourcemaps' ),
 // Load config file
 	config = require( '../gulp-tasks/config' ).styles,
-	size   = require( '../gulp-tasks/config' ).size;
+	size   = config.size;
 
 
 gulp.task('styles', function() {

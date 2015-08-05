@@ -7,7 +7,7 @@ var gulp     = require( 'gulp' ),
 	plumber  = require( 'gulp-plumber' ),
 // Load config file
 	config = require( '../gulp-tasks/config' ).images,
-	size   = require( '../gulp-tasks/config' ).size;
+	size   = config.size;
 
 gulp.task( 'images', function() {
 	return gulp.src( config.src )

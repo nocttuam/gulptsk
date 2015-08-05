@@ -5,7 +5,7 @@ var gulp    = require( 'gulp' ),
 	plumber = require( 'gulp-plumber' ),
 // Load config file
 	config = require( '../gulp-tasks/config' ).stylus,
-	size   = require( '../gulp-tasks/config' ).size;
+	size   = config.size;
 
 gulp.task('stylus', function () {
 	return gulp.src( config.src )

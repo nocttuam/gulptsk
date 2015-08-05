@@ -6,7 +6,7 @@ var gulp    = require( 'gulp' ),
 
 // Load config file
 	config = require( '../gulp-tasks/config' ).rsync,
-	size   = require( '../gulp-tasks/config' ).size;
+	size   = config.size;
 
 gulp.task( 'sync', function() {
 	return gulp.src( config.src )
