@@ -41,7 +41,7 @@ module.exports = {
 	},
 	delete: {
 		path: {
-			severFiles: '',
+			serverFiles: '',
 			buildFiles: ''
 		}
 	},
